@@ -4,7 +4,7 @@
 Write methods to get permutations and combinations of a subset of items
 '''
 
-def getCombinations(items, r, start = 0, thisC = None):
+def get_combinations(items, r, start = 0, thisC = None):
     if thisC == None: thisC = []
 
     if len(thisC) == r:
@@ -12,11 +12,11 @@ def getCombinations(items, r, start = 0, thisC = None):
     else:
         for i in range(start, len(items)):
             thisC.append(items[i])
-            for c in getCombinations(items, r, i + 1, thisC):
+            for c in get_combinations(items, r, i + 1, thisC):
                 yield c
             thisC.pop()
                 
-def getPermutations(items, r, used = None, thisP = None):
+def get_permutations(items, r, used = None, thisP = None):
     if thisP == None: thisP = []
     if used == None: used = [False] * len(items)
 
@@ -27,20 +27,20 @@ def getPermutations(items, r, used = None, thisP = None):
             if used[i]: continue
             thisP.append(items[i])
             used[i] = True
-            for p in getPermutations(items, r, used, thisP):
+            for p in get_permutations(items, r, used, thisP):
                 yield p
             thisP.pop()
             used[i] = False
 
 if __name__ == "__main__":
     print("Two-letter combinations from \"abcd\" -")
-    for combination in getCombinations("abcd", 2):
+    for combination in get_combinations("abcd", 2):
         print(combination)
 
     print("")
 
     print("Two-letter permutations from \"abcd\" -")
-    for combination in getPermutations("abcd", 2):
+    for combination in get_permutations("abcd", 2):
         print(combination)
 
 ''' Output
